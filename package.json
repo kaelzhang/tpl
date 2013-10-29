@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://code.dianpingoa.com/neurons/tpl.git"
+    "url": "git@github.com:kaelzhang/tpl.git"
   },
   "bugs": {
     "url": ""
