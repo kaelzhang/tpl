@@ -161,7 +161,7 @@ var PARAM_PRE = '@{';
  * @return {string} rendered string
  */
 exports.render = function(template, data){
-    return parse(template)(data);
+    return compile(template)(data);
 };
 
  

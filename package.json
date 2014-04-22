@@ -1,8 +1,8 @@
 {
   "name": "tpl",
-  "description": "The best project ever.",
-  "version": "0.2.0",
-  "homepage": "",
+  "description": "A very simple javascript template engine.",
+  "version": "0.2.1",
+  "homepage": "http://github.com/kaelzhang/tpl",
   "author": {
     "name": "Kael",
     "email": "i@kael.me"
