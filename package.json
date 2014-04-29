@@ -26,6 +26,14 @@
   "scripts": {
     "test": "make test"
   },
-  "keywords": [],
+  "keywords": [
+    "tpl",
+    "template",
+    "template engine",
+    "engine",
+    "embed",
+    "javascript",
+    "js"
+  ],
   "main": "index.js"
 }

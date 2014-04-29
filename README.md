@@ -1,66 +1,113 @@
 # tpl
 
-> The best project ever.
+A very simple JavaScript template engine using embeded javascript code
 
-## Getting Started
-Before anything taking its part, you should install [node](http://nodejs.org) and "cortex".
 
-#### Install Node
+## Syntax
 
-Visit [http://nodejs.org](http://nodejs.org), download and install the proper version of nodejs.
+### \<?js `codeSlice` ?>
 
-#### Install Cortex
+You could embed javascript slices into the template(or just strings), just like PHP does.
 
-    # maybe you should use `sudo`
-    npm install -g cortex
+If we have a template: 
 
-## Using tpl In Your Project
-
-First, install 'tpl' directly with `ctx install` (recommended)
-	
-	ctx install tpl --save
-	
-or, you could update your package.json manually
-    
-    dependencies: {
-        'tpl': '<version-you-want>'
+```html
+<ul><?js
+    var i = 5;
+    while(i -- > 0){
+    	?>  <li></li><?js
     }
-    
-and install dependencies
-	
-	ctx install
-    
-Then, use `require` method in your module
-    
-    var tpl = require('tpl');
-    
-Finally, start cortex server
-    
-    ctx server
-    
-Then cortex will care all the rest.
+?></ul>
+```
+
+Then it will create:
+
+```html
+<ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+```
+
+### @{`value`}
+
+Will be replaced by the `value` variable or statement within the current scope. 
+
+For example, if the template is:
+
+```
+<span class="name">@{it.name}</span>
+```
+
+object:
+
+```
+{
+  name: "Peter"
+}
+```
+
+result:
+
+```
+<span class="name">Peter</span>
+```
+
+**NOTICE** that in top level of the template, there is always a variable `it` which is the object passed into the template function.
 
 
-## API Documentation
+#### Duplex usage
 
-### tpl: constructor
-': constructor' means the `module.exports` of module 'tpl' is a constructor that we should use it with the `new` keyword
+```html
+<ul><?js
+    it.forEach(function(user){
+    	var age = parseInt(user.age);
+    	?><li>@{user.name}, age @{age}</li><?js
+    });
+?></ul>
+```
 
-	new tpl(options)
-	
-#### options
-- options.name {String}
+The template above might accept some data like:
+
+```js
+[
+	{name: 'Peter', age: '40'},
+	{name: 'Tom', age: 10}
+]
+```
+
+And the result is:
+
+```html
+<ul>
+<li>Peter, age 40</li>
+<li>Tom, age 10</li>
+</ul>
+```
 
 
+## APIs
 
-### tpl.\<method-name\>(arguments)
-Means this is a static method of `module.exports`
+### tpl.compile(template)
 
-#### arguments
-// arguments description here
+Compiles the template string into a template function which only accepts one parameter, `it`.
 
-### .\<method-name\>(arguments)
-Mean this is a method of the instance
+- template `String` the template string
 
-#### arguments
-// arguments description here
+Returns `function(it)`
+
+```
+var templateFn = tpl.compile(template);
+var result = templateFn(object);
+```
+
+### tpl.render(template, object)
+
+Renders a template with the given object.
+
+Do **NOT** use this method frequently, because compiling a template costs much of performance and `tpl.render` will not memoize any result.
+
+So, for most cases, you should cache the template function which returns from `tpl.compile` by yourself.
