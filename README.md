@@ -11,7 +11,7 @@ You could embed javascript slices into the template(or just strings), just like 
 
 If we have a template: 
 
-```html
+```php
 <ul><?js
     var i = 5;
     while(i -- > 0){
@@ -38,13 +38,13 @@ Will be replaced by the `value` variable or statement within the current scope.
 
 For example, if the template is:
 
-```
+```ftl
 <span class="name">@{it.name}</span>
 ```
 
 object:
 
-```
+```js
 {
   name: "Peter"
 }
@@ -52,7 +52,7 @@ object:
 
 result:
 
-```
+```html
 <span class="name">Peter</span>
 ```
 
