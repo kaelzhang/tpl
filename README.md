@@ -61,7 +61,7 @@ result:
 
 #### Duplex usage
 
-```html
+```php
 <ul><?js
     it.forEach(function(user){
     	var age = parseInt(user.age);
