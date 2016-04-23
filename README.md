@@ -1,4 +1,6 @@
-THIS IS A VEEEEEEEEEEERY OLD PROJECT IN EARLY 2009. DO NOT USE. PLEASE JUST TRY [ejs](https://www.npmjs.com/package/ejs) instead.
+THIS IS A VEEEEEEEEEEERY OLD PROJECT IN EARLY 2009. DO NOT USE. 
+
+PLEASE JUST TRY [ejs](https://www.npmjs.com/package/ejs) INSTEAD.
 
 # tpl
 
